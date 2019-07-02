@@ -1,0 +1,60 @@
+﻿<!--
+Project: Daves Alpacas, demo code for the article 'Entity Framework Core - Taming the Beast'
+Creator: Luke McQuade, 2019
+Copyright: Luke McQuade, 2019
+License: This Source Code Form is subject to the terms of the Mozilla Public License, 
+         v. 2.0. If a copy of the MPL was not distributed with this file, You can obtain one
+         at https://mozilla.org/MPL/2.0/.
+         This Source Code Form is "Incompatible With Secondary Licenses", 
+          as defined by the Mozilla Public License, v. 2.0.
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project = "..\db.props" />
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
+    <DefineConstants>TRACE;$(DbProvider)</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Alpacas.txt" />
+    <None Remove="Shearings.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\DavesAlpacas.Backend\appsettings.test.json" Link="appsettings.test.json" />
+    <Content Include="Alpacas.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Shearings.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.1" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="XunitXml.TestLogger" Version="2.1.26" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DavesAlpacas.Backend\DavesAlpacas.Backend.csproj" />
+    <ProjectReference Include="..\DavesAlpacas.Testing.Tools\DavesAlpacas.Testing.Tools.csproj" />
+  </ItemGroup>
+
+</Project>
